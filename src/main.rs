@@ -32,8 +32,15 @@ fn routes_hello() -> Router {
 
 async fn handler_lotto() -> impl IntoResponse {
     let mut nums = vec![];
-    for x in 1..8 {
-        nums.push(rand::thread_rng().gen_range(1..44));
+    let mut counter: i32 = 0;
+    while counter < 7 {
+        let ball = rand::thread_rng().gen_range(1..44);
+        if nums.contains(&ball){
+            continue
+        }else{
+            nums.push(ball);
+            counter = counter+1;
+        }
     }
     let admin = User {
         name: String::from("Admin"),
