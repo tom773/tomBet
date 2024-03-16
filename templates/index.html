@@ -8,22 +8,32 @@
     <title>ASKAMA</title>
 </head>
 <body>
-    <div class="flex flex-col text-center justify-items-center w-full h-full align-centre justify-centre">
+    <div class="flex flex-col text-center justify-items-center w-full h-full align-center justify-centre">
         <div class="m-auto text-2xl">
             <h1>
-                Hello, {{ name }}!
+                Welcome to TomBet!
             </h1><br>
-            <p>You are {{ age }} years old!</p>
+            <p>This is a portfolio showcase project written primarily in Rust,
+            with a focus on the backend, not the frontend!</p>
         </div><br>
-        <div class="m-auto flex text-center bg-gray">
-            {% for num in nums %}
-                <div class="rounded-full align-centre justify-centre text-center w-12 h-12 bg-blue-200">
-                    <p class="py-3 align-centre">{{ num }}</p>
-                </div>
-            {% endfor %}
-        </div><br><hr><br>
-        <p>Didn't win? Cry about it and <strong>refresh</strong> for 7 new numbers and $2.50 invoice!</p>
-    </div>
+        <div class="flex flex-col text-center justify-items-centre w-full h-full align-centre justify-centre">
+            <div class="flex m-auto flex-row text-center justify-items-center align-center p-3">
+                <button class="bg-red-400 mx-2 p-3 rounded-full">Lotto</button>
+                <button class="bg-yellow-400 mx-2 p-3 rounded-full">Reality Shows</button>
+                <button class="bg-green-400 mx-2 p-3 rounded-full">Sports</button>
+                <button class="bg-blue-400 mx-2 p-3 rounded-full">Racing</button> 
+            </div>    
+        </div>
+        <div class="flex flex-row text-center justify-items-centre w-full h-full align-centre justify-centre">
+            <div class="flex align-middle m-auto flex-row text-center justify-items-center p-3">                
+                <button 
+                    class="inline-flex align-middle text-center bg-black text-white mx-2 p-3 rounded-full">
+                    <p class="ml-2 mt-5">Login</p>
+                    <img class="inline-flex text-center align-centre w-16 h-16"  src="public/static/login.svg"></img>
+                </button> 
+            </div>
+        </div>
+        
     
 </body>
 </html>
