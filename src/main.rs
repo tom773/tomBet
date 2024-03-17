@@ -1,5 +1,6 @@
 #![allow(unused)]
 
+
 use axum::extract::{Path, Query};
 use axum::response::Html;
 use axum::Router;
@@ -13,12 +14,25 @@ use tower_http::services::ServeDir;
 use rand::Rng;
 use askama::Template;
 use std::slice::Iter;
+use std::error::Error;
+use sqlx::postgres::PgPoolOptions;
+use sqlx::Connection;
+use sqlx::Row;
+
+mod utils;   
 
 #[tokio::main]
 async fn main() {
+    
+    let user = utils::db::User{
+        username: String::from("Tommy"),
+        age: 69,
+        password: String::from("pass"),
+    };
+
     let routes_hello = Router::new().merge(routes_hello())
         .nest_service("/public", ServeDir::new("public"));
-
+    utils::db::create(&user).await.unwrap();
     let listener = TcpListener::bind("127.0.0.1:3000").await.unwrap();
 	println!("->> LISTENING on {:?}\n", listener.local_addr());
 	axum::serve(listener, routes_hello.into_make_service())

@@ -12,6 +12,8 @@ unused = "allow" # For experimental dev.
 workspace = true
 
 [dependencies]
+# -- My Crates
+
 # -- Async
 tokio = { version = "1", features = ["full"] }
 async-trait = "0.1"
@@ -29,6 +31,7 @@ strum_macros = "0.25"
 uuid = {version = "1", features = ["v4","fast-rng",]}
 rand = "0.8.5"
 askama = "0.12.1"
+sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
 
 [dev-dependencies]
 anyhow = "1"
