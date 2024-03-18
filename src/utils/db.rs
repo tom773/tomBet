@@ -5,7 +5,9 @@ use std::error::Error;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::Connection;
 use sqlx::Row;
+use serde::{Deserialize, Serialize};
 
+#[derive(Serialize)]
 pub struct User {
     pub username: String,
     pub age: i32,
