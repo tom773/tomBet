@@ -2,7 +2,7 @@
 
 use axum::{
     http::{HeaderMap, StatusCode},
-    response::{Html, IntoResponse, Redirect},
+    response::{Html, IntoResponse, IntoResponseParts, Redirect, Response},
 };
 use axum::extract::{Path, Query};
 use axum::Router;
@@ -47,26 +47,31 @@ fn routes_hello() -> Router {
         .route("/", get(handler_index))
         .layer(ServiceBuilder::new().layer(mware))
         .route("/lotto", get(handler_lotto))
-        .route("/api/signup", post(handler_signup))
-        .route("/api/login", post(handler_login))
-        .route("/signup", get(handler_signup_html))
+        .route("/signup", get(handler_signup_html).post(handler_signup))
+        .route("/login", get(handler_login_html).post(handler_login))
 }
 
-async fn handler_login(Form(LoginUser): Form<LoginUser>) -> 
-        (impl IntoResponse){
-            let user = utils::db::LoginUser {
-                username: LoginUser.username,
-                password: LoginUser.password,
-            };
-
-            let error = utils::db::login(&user).await;
-            if error.is_err(){
-                println!("Username or password is incorrect: {}", user.username);
-                return StatusCode::UNAUTHORIZED;
-            }
-            println!("Successfully logged in: {}", user.username);
-            return StatusCode::OK;
+async fn handler_login_html() -> impl IntoResponse {
+    let tmpl = LoginTmpl{
+        dummy_data: &"Dummy".to_string(),
+    };
+    return Html(tmpl.render().unwrap())
 }
+async fn handler_login(Form(LoginUser): Form<LoginUser>) -> (impl IntoResponse){
+    let user = utils::db::LoginUser {
+        username: LoginUser.username,
+        password: LoginUser.password,
+    };
+
+    let mut headers = HeaderMap::new();
+    let error = utils::db::login(&user).await;
+    if error.is_err(){
+        return(Html("<p style='color: red;'>Login Failed!</p>".to_string()))
+    };
+    headers.insert("HX-Target", "/".parse().unwrap());
+    return (Html("<p style='color: green;'> Login Successful!</p>".to_string()));
+}
+
 
 async fn handler_signup_html() -> impl IntoResponse {
     let tmpl = SignupTmpl{
@@ -142,6 +147,12 @@ pub struct SignupTmpl<'a>{
     dummy_data: &'a String,
 }
 
+#[derive(Template)]
+#[template(path = "login.html", escape = "none")]
+pub struct LoginTmpl<'a>{
+    dummy_data: &'a String,
+}
+
 // Types
 
 #[derive(Deserialize)]
@@ -156,4 +167,3 @@ struct LoginUser {
     username: String,
     password: String,
 }
-
