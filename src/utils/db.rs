@@ -14,6 +14,24 @@ pub struct User {
     pub password: String,
 }
 
+pub struct LoginUser {
+    pub username: String,
+    pub password: String,
+}
+
+pub async fn login(user: &LoginUser) -> Result<(), Box<dyn std::error::Error>> {
+    let url = "postgres://tommy:pass@localhost:5432/tommy";
+    let mut pool = sqlx::postgres::PgConnection::connect(url).await?;
+    let query = "SELECT * FROM usert WHERE username = $1 AND password = $2"; 
+    let row = sqlx::query(query)
+        .bind(&user.username)
+        .bind(&user.password)
+        .fetch_one(&mut pool)
+        .await?;
+    println!("-- USER LOGGED IN --: Name: {}", user.username);
+    Ok(())
+}
+
 pub async fn create(user: &User)-> Result<(), Box<dyn std::error::Error>> { 
     
     let url = "postgres://tommy:pass@localhost:5432/tommy";

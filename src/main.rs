@@ -1,11 +1,10 @@
 #![allow(unused)]
 
 use axum::{
-    response::Redirect,
     http::{HeaderMap, StatusCode},
+    response::{Html, IntoResponse, Redirect},
 };
 use axum::extract::{Path, Query};
-use axum::response::Html;
 use axum::Router;
 use axum::Form;
 use serde::{Deserialize, Serialize};
@@ -13,13 +12,11 @@ use axum::Json;
 use axum::routing::{get, get_service, post};
 use tokio::net::TcpListener;
 use std::net::SocketAddr;
-use axum::response::IntoResponse;
 use tower_http::{
     services::ServeDir,
-    cors::CorsLayer,
+    cors::{Any, CorsLayer},
 };
 use tower::ServiceBuilder;
-
 use rand::Rng;
 use askama::Template;
 use std::slice::Iter;
@@ -28,7 +25,6 @@ use sqlx::postgres::PgPoolOptions;
 use sqlx::Connection;
 use sqlx::Row;
 mod utils;   
-mod middleware;
 
 #[tokio::main]
 async fn main() { 
@@ -44,12 +40,32 @@ async fn main() {
 
 // Practice Routes
 fn routes_hello() -> Router {
+
+    let mware = CorsLayer::new().allow_headers(Any).allow_origin(Any)
+        .expose_headers(Any);
     Router::new()
         .route("/", get(handler_index))
-        .layer(ServiceBuilder::new().layer(crate::middleware::middleware::MWARE))
+        .layer(ServiceBuilder::new().layer(mware))
         .route("/lotto", get(handler_lotto))
         .route("/api/signup", post(handler_signup))
+        .route("/api/login", post(handler_login))
         .route("/signup", get(handler_signup_html))
+}
+
+async fn handler_login(Form(LoginUser): Form<LoginUser>) -> 
+        (impl IntoResponse){
+            let user = utils::db::LoginUser {
+                username: LoginUser.username,
+                password: LoginUser.password,
+            };
+
+            let error = utils::db::login(&user).await;
+            if error.is_err(){
+                println!("Username or password is incorrect: {}", user.username);
+                return StatusCode::UNAUTHORIZED;
+            }
+            println!("Successfully logged in: {}", user.username);
+            return StatusCode::OK;
 }
 
 async fn handler_signup_html() -> impl IntoResponse {
@@ -70,9 +86,7 @@ async fn handler_signup(Form(CreateUser): Form<CreateUser>)->
     utils::db::create(&user).await.unwrap();
     println!("Successfully created user!");
     
-    let mut redirect = HeaderMap::new();
-    redirect.insert("HX-Redirect", "/".parse().unwrap());
-
+    let redirect = Redirect::to("/");
     (redirect) 
     }
 
@@ -134,6 +148,12 @@ pub struct SignupTmpl<'a>{
 struct CreateUser {
     username: String,
     age: i32,
+    password: String,
+}
+
+#[derive(Deserialize)]
+struct LoginUser {
+    username: String,
     password: String,
 }
 
