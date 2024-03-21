@@ -47,6 +47,7 @@ fn routes_hello() -> Router {
         .route("/", get(handler_index))
         .layer(ServiceBuilder::new().layer(mware))
         .route("/lotto", get(handler_lotto))
+        .route("/api/draw", get(handler_draw))
         .route("/signup", get(handler_signup_html).post(handler_signup))
         .route("/login", get(handler_login_html).post(handler_login))
 }
@@ -102,7 +103,7 @@ async fn handler_index() -> impl IntoResponse{
     return Html(tmpl.render().unwrap());    
 }
 
-async fn handler_lotto() -> impl IntoResponse {
+async fn handler_draw() -> impl IntoResponse{
     let mut nums = vec![];
     let mut counter: i32 = 0;
     while counter < 7 {
@@ -114,15 +115,17 @@ async fn handler_lotto() -> impl IntoResponse {
             counter = counter+1;
         }
     }
-    let admin = utils::db::User {
-        username: String::from("Admin"),
-        age: 69,
-        password: String::from("1234"),
+    let tmpl = BallsTmpl{
+        balls: &nums,
     };
+
+    return Html(tmpl.render().unwrap());
+}
+
+async fn handler_lotto() -> impl IntoResponse {
+    
     let template = MyTemplate {
-        name: &admin.username,
-        age: &admin.age,
-        nums: &nums,
+        dummy_data: &"Dummy".to_string(),       
     };
     Html(template.render().unwrap())
 }
@@ -130,9 +133,7 @@ async fn handler_lotto() -> impl IntoResponse {
 #[derive(Template)]
 #[template(path = "lotto.html", escape = "none")]
 pub struct MyTemplate<'a> {
-    name: &'a String,
-    age: &'a i32,
-    nums: &'a Vec<i32>,
+   dummy_data: &'a String, 
 }
 
 #[derive(Template)]
@@ -151,6 +152,12 @@ pub struct SignupTmpl<'a>{
 #[template(path = "login.html", escape = "none")]
 pub struct LoginTmpl<'a>{
     dummy_data: &'a String,
+}
+
+#[derive(Template)]
+#[template(path = "components/balls.html", escape = "none")]
+pub struct BallsTmpl<'a>{
+    balls: &'a Vec<i32>,
 }
 
 // Types

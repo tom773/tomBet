@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/htmx.org@latest"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>ASKAMA</title>
-</head>
-<body>
-    <div class="flex flex-col text-center justify-items-center w-full h-full align-centre justify-centre">
+{% extends "header.html" %}
+{% block content %}
+    <div class="flex flex-col text-center justify-items-center w-full h-1/2 align-centre justify-centre">
         <div class="m-auto text-2xl">
             <h1>
-                Hello, {{ name }}!
+               Lotto! 
             </h1><br>
-            <p>You are {{ age }} years old!</p>
+            <p>Welcome to the Show!</p>
         </div><br>
-        <div class="m-auto flex text-center bg-gray">
-            {% for num in nums %}
-                <div class="rounded-full align-centre justify-centre text-center w-12 h-12 bg-blue-200">
-                    <p class="py-3 align-centre">{{ num }}</p>
-                </div>
-            {% endfor %}
-        </div><br><hr><br>
-        <p>Didn't win? Cry about it and <strong>refresh</strong> for 7 new numbers and $2.50 invoice!</p>
+        <div class="m-auto flex flex-col text-center bg-gray">
+            <button class="btn btn-primary" hx-get="/api/draw" hx-target="#balls">Draw!</button>
+        </div>
+        <div class="m-auto flex flex-row" id="balls"></div>
+
+
+        <hr>
+        <p>Didn't win? Cry about it and click <strong>Draw!</strong> again, for 7 new numbers and $2.50 invoice!</p>
     </div>
+{% endblock content %}
     
-</body>
-</html>
+
+

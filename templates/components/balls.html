@@ -1,0 +1,8 @@
+{% extends "../header.html" %}
+{% block content %}
+    {% for ball in balls %}
+        <div class="rounded-full align-centre justify-centre text-center w-12 h-12 bg-blue-200">
+            <p class="py-3 align-centre">{{ ball }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
