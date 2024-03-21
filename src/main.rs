@@ -52,6 +52,7 @@ fn routes_hello() -> Router {
         .route("/login", get(handler_login_html).post(handler_login))
 }
 
+// Auth Handlers
 async fn handler_login_html() -> impl IntoResponse {
     let tmpl = LoginTmpl{
         dummy_data: &"Dummy".to_string(),
@@ -96,6 +97,7 @@ async fn handler_signup(Form(CreateUser): Form<CreateUser>)->
     (redirect) 
     }
 
+// Index Handler
 async fn handler_index() -> impl IntoResponse{
     let tmpl = HomeTmpl{
         dummy_data: &"Dummy".to_string(),
@@ -103,6 +105,8 @@ async fn handler_index() -> impl IntoResponse{
     return Html(tmpl.render().unwrap());    
 }
 
+// Lotto Functions
+// Todo: Maybe seperate these out into a different file
 async fn handler_draw() -> impl IntoResponse{
     let mut nums = vec![];
     let mut counter: i32 = 0;
@@ -130,6 +134,8 @@ async fn handler_lotto() -> impl IntoResponse {
     Html(template.render().unwrap())
 }
 
+// Templates
+// TODO: Remove dummy data
 #[derive(Template)]
 #[template(path = "lotto.html", escape = "none")]
 pub struct MyTemplate<'a> {
