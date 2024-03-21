@@ -15,7 +15,81 @@
 
         <hr>
         <p>Didn't win? Cry about it and click <strong>Draw!</strong> again, for 7 new numbers and $2.50 invoice!</p>
+        <br><br>
+
+        <div class="m-auto flex flex-col">
+            <div class="m-auto text-l flex flex-row">
+                <div class="number-unsel">1</div>
+                <div class="number-unsel">2</div>
+                <div class="number-unsel">3</div>
+                <div class="number-unsel">4</div>
+                <div class="number-unsel">5</div>
+                <div class="number-unsel">6</div>
+                <div class="number-unsel">7</div>
+                <div class="number-unsel">8</div>
+            </div>
+            <div class="m-auto text-l flex flex-row">
+                <div class="number-unsel">9</div>
+                <div class="number-unsel">10</div>
+                <div class="number-unsel">11</div>
+                <div class="number-unsel">12</div>
+                <div class="number-unsel">13</div>
+                <div class="number-unsel">14</div>
+                <div class="number-unsel">15</div>
+                <div class="number-unsel">16</div>
+            </div>
+            <div class="m-auto text-l flex flex-row">
+                <div class="number-unsel">17</div>
+                <div class="number-unsel">18</div>
+                <div class="number-unsel">19</div>
+                <div class="number-unsel">20</div>
+                <div class="number-unsel">21</div>
+                <div class="number-unsel">22</div>
+                <div class="number-unsel">23</div>
+                <div class="number-unsel">24</div>
+            </div>
+            <div class="m-auto text-l flex flex-row">
+                <div class="number-unsel">25</div>
+                <div class="number-unsel">26</div>
+                <div class="number-unsel">27</div>
+                <div class="number-unsel">28</div>
+                <div class="number-unsel">29</div>
+                <div class="number-unsel">30</div>
+                <div class="number-unsel">31</div>
+                <div class="number-unsel">32</div>
+            </div>
+            <div class="m-auto text-l flex flex-row">
+                <div class="number-unsel">33</div>
+                <div class="number-unsel">34</div>
+                <div class="number-unsel">35</div>
+                <div class="number-unsel">36</div>
+                <div class="number-unsel">37</div>
+                <div class="number-unsel">38</div>
+                <div class="number-unsel">39</div>
+                <div class="number-unsel">40</div>
+            </div>
+            <div class="m-auto text-l flex flex-row">
+                <div class="number-unsel">41</div>
+                <div class="number-unsel">42</div>
+                <div class="number-unsel">43</div>
+                <div class="number-unsel">44</div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.number-unsel').forEach((number) => {
+            number.addEventListener('click', () => {
+                number.classList.toggle('number-sel');
+            });
+        });
+        document.querySelectorAll('.number-sel').forEach((number) => {
+            number.addEventListener('click', () => {
+                number.classList.toggle('number-unsel');
+            });
+        });
+    </script>
+
 {% endblock content %}
     
 
