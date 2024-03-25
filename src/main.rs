@@ -1,10 +1,12 @@
 #![allow(unused)]
-
+#![allow(non_snake_case)]
 use axum::{
+    extract,
     http::{HeaderMap, StatusCode},
     response::{Html, IntoResponse, IntoResponseParts, Redirect, Response},
 };
-use axum::extract::{Path, Query};
+use std::collections::HashSet;
+use axum::extract::{Path, Query, Multipart};
 use axum::Router;
 use axum::Form;
 use serde::{Deserialize, Serialize};
@@ -24,7 +26,10 @@ use std::error::Error;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::Connection;
 use sqlx::Row;
-mod utils;   
+mod utils;
+use std::sync::Mutex;
+use tokio::sync::Mutex as TokioMutex;
+use byteorder::{ByteOrder, LittleEndian, WriteBytesExt};
 
 #[tokio::main]
 async fn main() { 
@@ -48,6 +53,7 @@ fn routes_hello() -> Router {
         .layer(ServiceBuilder::new().layer(mware))
         .route("/lotto", get(handler_lotto))
         .route("/api/draw", get(handler_draw))
+        .route("/api/select-numbers", post(sel_num))
         .route("/signup", get(handler_signup_html).post(handler_signup))
         .route("/login", get(handler_login_html).post(handler_login))
 }
@@ -121,9 +127,26 @@ async fn handler_draw() -> impl IntoResponse{
     }
     let tmpl = BallsTmpl{
         balls: &nums,
-    };
+    }; 
 
     return Html(tmpl.render().unwrap());
+}
+
+async fn sel_num(mut multipart: Multipart) -> impl IntoResponse{
+    let mut nums = vec![];
+    while let Some(mut field) = multipart.next_field().await.unwrap(){
+        let name = field.name().unwrap().to_string();
+        let data = field.bytes().await.unwrap();
+        let data_str = String::from_utf8(data.to_vec()).unwrap(); 
+        for i in data_str.split(","){
+            nums.push(i.parse::<i32>().unwrap());
+        }
+        
+    }
+    let selected = Lotto{
+        numbers: nums,
+    };
+    return Html(format!("{:?}", selected.numbers));
 }
 
 async fn handler_lotto() -> impl IntoResponse {
@@ -179,4 +202,10 @@ struct CreateUser {
 struct LoginUser {
     username: String,
     password: String,
+}
+
+#[derive(Deserialize)]
+#[derive(Debug)]
+struct Lotto {
+    numbers: Vec<i32>,
 }

@@ -22,7 +22,7 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 serde_with = "3"
 # -- Web
-axum = "0.7"
+axum = {version = "0.7.4", features = ["multipart"]}
 tower-http = { version = "0.5", features = ["fs", "cors"]}
 tower-cookies = "0.10"
 tower = {version = "0.4", features = ["full"]}
@@ -34,7 +34,7 @@ uuid = {version = "1", features = ["v4","fast-rng",]}
 rand = "0.8.5"
 askama = "0.12.1"
 sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
-
+byteorder = "1.5.0"
 [dev-dependencies]
 anyhow = "1"
 httpc-test = "0.1.1"

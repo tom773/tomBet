@@ -35,7 +35,17 @@ function submitTicket(){
             selectedNumbers.push(checkbox.value);
         }
     });
-    console.log(selectedNumbers);
+    let fdata = new FormData();
+    fdata.append('numbers', selectedNumbers);
+    fetch('/api/select-numbers', {
+        method: 'POST', 
+        body: (fdata),
+    });
+    
+
+    // To Do: Send selectedNumbers to server
+    // then store it, and display it on the page in place of the selection boxes
+    // Also, add a button to allow the user to select new numbers
 }
 
 window.onload = generateNumberSelection;
