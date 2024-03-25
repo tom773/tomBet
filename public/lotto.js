@@ -11,6 +11,7 @@ function generateNumberSelection(){
         numberSelectionDiv.appendChild(checkbox);
         numberSelectionDiv.appendChild(label);
     }
+    // Put this in an if statement at some point
     for (let i = 23; i <= 44; i++) {
         const numberSelectionDiv = document.getElementById('numberSelection2');
         const checkbox = document.createElement('input');
