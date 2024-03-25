@@ -127,10 +127,14 @@ async fn handler_draw() -> impl IntoResponse{
     }
     let tmpl = BallsTmpl{
         balls: &nums,
-    }; 
+    };
+
+
 
     return Html(tmpl.render().unwrap());
 }
+
+
 
 async fn sel_num(mut multipart: Multipart) -> impl IntoResponse{
     let mut nums = vec![];
@@ -206,6 +210,6 @@ struct LoginUser {
 
 #[derive(Deserialize)]
 #[derive(Debug)]
-struct Lotto {
+pub struct Lotto {
     numbers: Vec<i32>,
 }
