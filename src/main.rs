@@ -128,15 +128,22 @@ async fn handler_draw() -> impl IntoResponse{
     let tmpl = BallsTmpl{
         balls: &nums,
     };
+    let selected = utils::db::FetchNums{
+        username: "Tommy".to_string(), 
+    };
+    let ticket = utils::db::fetchNums(&selected).await.unwrap()
+        .iter()
+        .map(|x| x.parse::<i32>()
+        .unwrap())
+        .collect::<Vec<i32>>();
 
-
-
+    println!("-- TICKET FETCHED --: {:?}", ticket); 
     return Html(tmpl.render().unwrap());
 }
 
 
 
-async fn sel_num(mut multipart: Multipart) -> impl IntoResponse{
+async fn sel_num(mut multipart: Multipart){ 
     let mut nums = vec![];
     while let Some(mut field) = multipart.next_field().await.unwrap(){
         let name = field.name().unwrap().to_string();
@@ -147,10 +154,13 @@ async fn sel_num(mut multipart: Multipart) -> impl IntoResponse{
         }
         
     }
-    let selected = Lotto{
-        numbers: nums,
+    let selected = utils::db::LottoNums{
+        user: "Tommy".to_string(),
+        nums: nums,
     };
-    return Html(format!("{:?}", selected.numbers));
+
+    utils::db::insertNums(&selected).await.unwrap();
+    
 }
 
 async fn handler_lotto() -> impl IntoResponse {
@@ -211,5 +221,6 @@ struct LoginUser {
 #[derive(Deserialize)]
 #[derive(Debug)]
 pub struct Lotto {
+    users: String,
     numbers: Vec<i32>,
 }

@@ -1,39 +1,5 @@
 {% extends "header.html" %}
 {% block content %}
-<style>
-
-#numberselection {
-    margin: 20px 0;
-}
-
-/* style for checkboxes */
-input[type="checkbox"] {
-    display: none; /* hide the default checkbox */
-}
-
-/* style for the custom checkbox design */
-input[type="checkbox"] + label {
-    
-    padding: 5px 10px;
-    margin: auto;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* style for checked custom checkbox */
-input[type="checkbox"]:checked + label {
-    background-color: #007bff; /* example color for checked checkbox */
-    color: #fff;
-    border-color: #007bff;
-}
-
-/* style for label text */
-label {
-    font-size: 16px;
-    font-weight: bold;
-}
-</style>
     <div class="flex flex-col text-center justify-items-center w-full h-1/2 align-centre justify-centre">
         <div class="m-auto text-2xl">
             <h1>
@@ -41,8 +7,8 @@ label {
             </h1><br>
             <p>Welcome to the Show!</p>
         </div><br>
-        <div class="m-auto flex flex-col text-center bg-gray">
-            <button class="btn btn-primary" hx-get="/api/draw" hx-target="#balls">Draw!</button>
+        <div class="m-auto p-2 flex flex-col text-center bg-gray">
+            <button class="btn btn-primary mb-2" hx-get="/api/draw" hx-target="#balls">Draw!</button>
         </div>
         <div class="m-auto flex flex-row" id="balls"></div>
 
@@ -51,9 +17,9 @@ label {
         <p>Didn't win? Cry about it and click <strong>Draw!</strong> again, for 7 new numbers and $2.50 invoice!</p>
         <br><br>
 
-        <div id="numberSelection1" class="m-auto w-1/4 flex flex-row">
+        <div id="numberSelection1" class="m-auto p-2 text-centre w-1/4 flex flex-row">
         </div>
-        <div id="numberSelection2" class="m-auto w-1/4 flec flex-row"></div>
+        <div id="numberSelection2" class="m-auto p-2 w-1/4 text-centre flex flex-row"></div>
         <button class="btn btn-primary m-auto w-1/4 flex flex-col" onclick="submitTicket();">Submit Ticket!</button>
     </div>
 

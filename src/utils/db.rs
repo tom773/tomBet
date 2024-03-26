@@ -18,6 +18,40 @@ pub struct LoginUser {
     pub username: String,
     pub password: String,
 }
+#[derive(Serialize)]
+pub struct LottoNums {
+    pub user: String,
+    pub nums: Vec<i32>,
+}
+
+pub struct FetchNums {
+    pub username: String,
+}
+
+pub async fn fetchNums(nums: &FetchNums) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+    let url = "postgres://tommy:pass@localhost:5432/tommy";
+    let mut pool = sqlx::postgres::PgConnection::connect(url).await?;
+    let query = "SELECT ticket FROM tickets WHERE username = $1";
+    let row = sqlx::query(query)
+        .bind(&nums.username)
+        .fetch_one(&mut pool)
+        .await?;
+    let nums = row.get(0);
+    Ok(nums)
+}
+
+pub async fn insertNums(nums: &LottoNums) -> Result<(), Box<dyn std::error::Error>> {
+    let url = "postgres://tommy:pass@localhost:5432/tommy";
+    let mut pool = sqlx::postgres::PgConnection::connect(url).await?;
+    let query = "UPDATE tickets SET ticket=$2 WHERE username = $1";
+    sqlx::query(query)
+        .bind(&nums.user)
+        .bind(&nums.nums)
+        .execute(&mut pool)
+        .await?;
+    println!("-- LOTTO NUMS INSERTED --: {:?}", nums.nums);
+    Ok(())
+}
 
 pub async fn login(user: &LoginUser) -> Result<(), Box<dyn std::error::Error>> {
     let url = "postgres://tommy:pass@localhost:5432/tommy";
