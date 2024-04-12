@@ -48,4 +48,26 @@ function submitTicket(){
     // Also, add a button to allow the user to select new numbers
 }
 
-window.onload = generateNumberSelection;
+function ldcall(){
+    
+    getTicket();
+    generateNumberSelection();
+}
+
+function getTicket(){
+    
+    fetch('/api/getnums')
+        .then(response => response.json())
+        .then(data => {
+            data.nums.forEach(num => {
+                const numberSelectedDiv = document.getElementById('ticketNumbers_');
+                const label = document.createElement('p');
+                label.className = 'flex font-bold rounded-full text-center bg-green-400 align-middle text-white w-10 h-10 justify-center'
+                label.appendChild(document.createTextNode(num));
+                numberSelectedDiv.appendChild(label);
+            });                
+        });
+
+}
+
+window.onload = ldcall;
