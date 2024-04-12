@@ -5,6 +5,7 @@ use axum::{
     http::{HeaderMap, StatusCode},
     response::{Html, IntoResponse, IntoResponseParts, Redirect, Response},
 };
+use utils::db::FetchedNums;
 use std::collections::HashSet;
 use axum::extract::{Path, Query, Multipart};
 use axum::Router;
@@ -27,6 +28,7 @@ use sqlx::postgres::PgPoolOptions;
 use sqlx::Connection;
 use sqlx::Row;
 mod utils;
+mod generator;
 use std::sync::Mutex;
 use tokio::sync::Mutex as TokioMutex;
 use byteorder::{ByteOrder, LittleEndian, WriteBytesExt};
@@ -34,7 +36,7 @@ use byteorder::{ByteOrder, LittleEndian, WriteBytesExt};
 #[tokio::main]
 async fn main() { 
     
-    let routes_hello = Router::new().merge(routes_hello())
+    let routes_hello = Router::new().merge(routes_hello()).merge(routes_lotto())
         .nest_service("/public", ServeDir::new("public"));
     let listener = TcpListener::bind("127.0.0.1:3000").await.unwrap();
 	println!("->> LISTENING on {:?}\n", listener.local_addr());
@@ -51,11 +53,16 @@ fn routes_hello() -> Router {
     Router::new()
         .route("/", get(handler_index))
         .layer(ServiceBuilder::new().layer(mware))
-        .route("/lotto", get(handler_lotto))
-        .route("/api/draw", get(handler_draw))
-        .route("/api/select-numbers", post(sel_num))
         .route("/signup", get(handler_signup_html).post(handler_signup))
         .route("/login", get(handler_login_html).post(handler_login))
+}
+
+fn routes_lotto() -> Router {
+    Router::new()
+        .route("/lotto", get(handler_lotto))
+        .route("/api/draw", get(handler_draw))
+        .route("/api/getnums", get(get_nums))
+        .route("/api/select-numbers", post(sel_num))
 }
 
 // Auth Handlers
@@ -128,6 +135,10 @@ async fn handler_draw() -> impl IntoResponse{
     let tmpl = BallsTmpl{
         balls: &nums,
     };
+    return Html(tmpl.render().unwrap());
+}
+
+async fn get_nums() -> Json<utils::db::FetchNums>{
     let selected = utils::db::FetchNums{
         username: "Tommy".to_string(), 
     };
@@ -136,9 +147,10 @@ async fn handler_draw() -> impl IntoResponse{
         .map(|x| x.parse::<i32>()
         .unwrap())
         .collect::<Vec<i32>>();
-
-    println!("-- TICKET FETCHED --: {:?}", ticket); 
-    return Html(tmpl.render().unwrap());
+    let ticket_ = FetchedNums{
+        nums: ticket,
+    };
+    return Json(ticket_); 
 }
 
 

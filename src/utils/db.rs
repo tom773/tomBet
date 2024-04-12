@@ -23,9 +23,13 @@ pub struct LottoNums {
     pub user: String,
     pub nums: Vec<i32>,
 }
-
+#[derive(Serialize)]
 pub struct FetchNums {
     pub username: String,
+}
+#[derive(Serialize)]
+pub struct FetchedNums {
+    pub nums: Vec<i32>,
 }
 
 pub async fn fetchNums(nums: &FetchNums) -> Result<Vec<String>, Box<dyn std::error::Error>> {
