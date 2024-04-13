@@ -11,6 +11,20 @@
     <title>ASKAMA</title>
 </head>
 <body>
+    <script>
+
+        function fetchBal(){
+            fetch('/api/getbal')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('bal').innerText = "Balance: $"+data.bal;
+                });
+        }
+        window.onload = fetchBal();
+    </script>
+    <div id="balance">
+        <button style="width: 10%; float: right; color: #1d232a; background-color: #ffffff" class="btn ?"><p style="display: inline;" id="bal"></p></button>
+    </div>
     {% block content %}
     {% endblock content %}
 </body>

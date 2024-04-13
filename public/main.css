@@ -5,6 +5,11 @@
 body {
     background-color: #1d232a;
     height: 100vh;
+    width: 100vw;
+}
+
+.navbar {
+    width: 100%;
 }
 
 #numberSelection1 {

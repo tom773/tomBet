@@ -63,6 +63,8 @@ fn routes_lotto() -> Router {
         .route("/api/draw", get(handler_draw))
         .route("/api/getnums", get(get_nums))
         .route("/api/select-numbers", post(sel_num))
+        .route("/api/balupdate", post(bal_update))
+        .route("/api/getbal", get(get_bal))
 }
 
 // Auth Handlers
@@ -102,6 +104,7 @@ async fn handler_signup(Form(CreateUser): Form<CreateUser>)->
         username: CreateUser.username,
         age: CreateUser.age,
         password: CreateUser.password,
+        balance: 0,
     };
     utils::db::create(&user).await.unwrap();
     println!("Successfully created user!");
@@ -189,6 +192,18 @@ async fn handler_lotto() -> impl IntoResponse {
         dummy_data: &"Dummy".to_string(),       
     };
     Html(template.render().unwrap())
+}
+
+async fn bal_update() {
+    
+    utils::db::alterBal(30).await.unwrap();
+}
+
+async fn get_bal() -> Json<utils::db::Balance>{
+    let balance = utils::db::getBal().await.unwrap();
+    return Json(utils::db::Balance{
+        bal: balance,
+    });
 }
 
 // Templates

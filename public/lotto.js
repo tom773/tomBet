@@ -41,11 +41,6 @@ function submitTicket(){
         method: 'POST', 
         body: (fdata),
     });
-    
-
-    // To Do: Send selectedNumbers to server
-    // then store it, and display it on the page in place of the selection boxes
-    // Also, add a button to allow the user to select new numbers
 }
 
 function ldcall(){
@@ -55,7 +50,6 @@ function ldcall(){
 }
 
 function getTicket(){
-    
     fetch('/api/getnums')
         .then(response => response.json())
         .then(data => {
@@ -63,10 +57,11 @@ function getTicket(){
                 const numberSelectedDiv = document.getElementById('ticketNumbers_');
                 const numberDiv = document.createElement('div');
                 const label = document.createElement('p');
-                
+                 
                 numberDiv.className = 'flex font-bold rounded-full text-center align-middle text-white w-10 h-10 justify-center m-auto';
                 numberDiv.style.borderColor = '#ffffff'
                 numberDiv.style.borderWidth = '2px';
+    
                 label.className = 'align-middle m-auto justify-center';
                 label.style.fontSize = '1rem';
                 
@@ -76,7 +71,6 @@ function getTicket(){
                 
             });                
         });
-
 }
 
 window.onload = ldcall;
