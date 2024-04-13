@@ -132,13 +132,21 @@ async fn handler_draw() -> impl IntoResponse{
             counter = counter+1;
         }
     }
+    let mut matches = vec![];
+    let selected = get_nums().await;
+    for i in selected.nums.iter(){
+        if nums.contains(i){
+            matches.push(i.to_owned());
+        }
+    }
     let tmpl = BallsTmpl{
         balls: &nums,
+        winners: &matches,
     };
     return Html(tmpl.render().unwrap());
 }
 
-async fn get_nums() -> Json<utils::db::FetchNums>{
+async fn get_nums() -> Json<utils::db::FetchedNums>{
     let selected = utils::db::FetchNums{
         username: "Tommy".to_string(), 
     };
@@ -213,6 +221,7 @@ pub struct LoginTmpl<'a>{
 #[template(path = "components/balls.html", escape = "none")]
 pub struct BallsTmpl<'a>{
     balls: &'a Vec<i32>,
+    winners: &'a Vec<i32>,
 }
 
 // Types

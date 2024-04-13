@@ -1,9 +1,16 @@
-<script src="https://cdn.tailwindcss.com"></script>
-
+{% extends "header.html" %}
 {% block content %}
     {% for ball in balls %}
-        <div class="rounded-full align-centre w-10 h-10 justify-centre bg-blue-400">
-            <p class="align-centre">{{ ball }}</p>
+        <script>
+            {% for winner in winners %}
+                {% if winner == ball %}
+                    document.getElementById("{{ ball }}").style.backgroundColor = "#044f00";
+                    document.getElementById("{{ ball }}").style.borderColor = "#08a600";
+                {% endif %}    
+            {% endfor %}
+        </script>
+        <div id="{{ ball }}" style="border-width: 2px; border-color: #ffffff;" class="flex font-bold rounded-full text-center align-middle text-white w-10 h-10 justify-center m-auto">
+            <p  class="m-auto justify-centre align-middle">{{ ball }}</p>
         </div>
     {% endfor %}
 {% endblock content %}

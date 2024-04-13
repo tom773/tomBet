@@ -61,10 +61,19 @@ function getTicket(){
         .then(data => {
             data.nums.forEach(num => {
                 const numberSelectedDiv = document.getElementById('ticketNumbers_');
+                const numberDiv = document.createElement('div');
                 const label = document.createElement('p');
-                label.className = 'flex font-bold rounded-full text-center bg-green-400 align-middle text-white w-10 h-10 justify-center'
-                label.appendChild(document.createTextNode(num));
-                numberSelectedDiv.appendChild(label);
+                
+                numberDiv.className = 'flex font-bold rounded-full text-center align-middle text-white w-10 h-10 justify-center m-auto';
+                numberDiv.style.borderColor = '#ffffff'
+                numberDiv.style.borderWidth = '2px';
+                label.className = 'align-middle m-auto justify-center';
+                label.style.fontSize = '1rem';
+                
+                label.innerHTML = num;
+                numberDiv.appendChild(label);
+                numberSelectedDiv.appendChild(numberDiv);
+                
             });                
         });
 

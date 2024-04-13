@@ -27,7 +27,8 @@ pub struct LottoNums {
 pub struct FetchNums {
     pub username: String,
 }
-#[derive(Serialize)]
+#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct FetchedNums {
     pub nums: Vec<i32>,
 }

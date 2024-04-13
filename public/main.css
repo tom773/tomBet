@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: #1d232a;
+    height: 100vh;
+}
+
 #numberSelection1 {
     display: flex;
     justify-content: center;
