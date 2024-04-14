@@ -9,7 +9,9 @@
             <div class="m-auto flex p-5 justify-centre align-middle flex-row">
                 <div class="flex m-auto text-m justify-centre align-middle flex-row p-5" id="ticketNumbers_"></div>
             </div>
-        </div><br>
+        </div>
+
+        <div class="m-auto font-bold text-xl text-center" id="msg"></div>
         <div class="m-auto p-2 flex flex-col text-center bg-gray"
             x-data="{numbers: []}"
             x-init="numbers = await (await fetch('/api/getnums')).json()">
@@ -19,15 +21,13 @@
             <div class="m-auto flex flex-row" id="balls"></div>
         </div>
 
-        <hr>
+        <hr><br>
         <p>Didn't win? Cry about it and click <strong>Draw!</strong> again, for 7 new numbers and $2.50 invoice!</p>
-        <br>
 
-        
         <div id="numberSelection1" class="m-auto p-2 text-centre w-1/4 flex flex-row">
         </div>
         <div id="numberSelection2" class="m-auto p-2 w-1/4 text-centre flex flex-row"></div>
-        <button class="btn btn-primary m-auto w-1/4 flex flex-col" onclick="submitTicket();">Submit Ticket!</button>
+        <button class="btn btn-primary m-auto w-1/4 flex flex-col" onclick="submitTicket();location.reload();">Submit Ticket!</button>
     </div>
 
     <script src="../public/lotto.js"></script>

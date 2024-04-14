@@ -1,5 +1,16 @@
 
 {% block content %}
+    <script>
+       var msgdiv = document.getElementById("msg");
+       var msg = "{{msg}}";
+       if (msg != "") {
+           msgdiv.innerHTML = msg;
+           msgdiv.style.display = "flex";
+           msgdiv.style.color = "#044f00";
+       } else {
+           msgdiv.style.display = "none";
+       }
+    </script>
     {% for ball in balls %}
         <script>
             {% for winner in winners %}
@@ -13,4 +24,7 @@
             <p  class="m-auto justify-centre align-middle">{{ ball }}</p>
         </div>
     {% endfor %}
+    <!--<div class="flex m-2">
+        <p style="margin-left: 5px; color: #044f00" class="font-bold py-2 px-4"></p>
+    </div>-->
 {% endblock content %}

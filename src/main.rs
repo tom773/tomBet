@@ -142,9 +142,20 @@ async fn handler_draw() -> impl IntoResponse{
             matches.push(i.to_owned());
         }
     }
+    let mut msg = String::new(); 
+    match matches.len(){
+        3 => msg = "+$7.50!".to_string(),
+        4 => msg = "+$20.00!".to_string(),
+        5 => msg = "+$800.00!".to_string(),
+        6 => msg = "+$10,000.00!".to_string(),
+        7 => msg = "+$1,000,000.00!".to_string(),
+        _ => msg = "".to_string(),
+    }
+
     let tmpl = BallsTmpl{
         balls: &nums,
         winners: &matches,
+        msg: &msg,
     };
     return Html(tmpl.render().unwrap());
 }
@@ -237,6 +248,7 @@ pub struct LoginTmpl<'a>{
 pub struct BallsTmpl<'a>{
     balls: &'a Vec<i32>,
     winners: &'a Vec<i32>,
+    msg: &'a String,
 }
 
 // Types
