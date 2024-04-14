@@ -63,7 +63,7 @@ fn routes_lotto() -> Router {
         .route("/api/draw", get(handler_draw))
         .route("/api/getnums", get(get_nums))
         .route("/api/select-numbers", post(sel_num))
-        .route("/api/balupdate", post(bal_update))
+        //.route("/api/balupdate", post(bal_update))
         .route("/api/getbal", get(get_bal))
 }
 
@@ -144,12 +144,21 @@ async fn handler_draw() -> impl IntoResponse{
     }
     let mut msg = String::new(); 
     match matches.len(){
-        3 => msg = "+$7.50!".to_string(),
+        3 => msg = "+$10.00!".to_string(), 
         4 => msg = "+$20.00!".to_string(),
         5 => msg = "+$800.00!".to_string(),
         6 => msg = "+$10,000.00!".to_string(),
         7 => msg = "+$1,000,000.00!".to_string(),
         _ => msg = "".to_string(),
+    }
+
+    match matches.len(){
+        3 => bal_update(10).await,
+        4 => bal_update(20).await,
+        5 => bal_update(800).await,
+        6 => bal_update(10000).await,
+        7 => bal_update(1000000).await,
+        _ => bal_update(-2).await,
     }
 
     let tmpl = BallsTmpl{
@@ -205,9 +214,9 @@ async fn handler_lotto() -> impl IntoResponse {
     Html(template.render().unwrap())
 }
 
-async fn bal_update() {
+async fn bal_update(amt: i32) {
     
-    utils::db::alterBal(30).await.unwrap();
+    utils::db::alterBal(amt).await.unwrap();
 }
 
 async fn get_bal() -> Json<utils::db::Balance>{

@@ -12,15 +12,21 @@
 </head>
 <body>
     <script>
+            
+        function nwc(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         function fetchBal(){
             fetch('/api/getbal')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('bal').innerText = "Balance: $"+data.bal;
+                    document.getElementById('bal').innerText = "Balance: $"+data.bal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 });
         }
         window.onload = fetchBal();
+        document.addEventListener('htmx:afterSwap', fetchBal);
+
     </script>
     <div id="balance">
         <button style="width: 10%; float: right; color: #1d232a; background-color: #ffffff" class="btn ?"><p style="display: inline;" id="bal"></p></button>
