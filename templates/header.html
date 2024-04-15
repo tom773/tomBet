@@ -28,7 +28,8 @@
         document.addEventListener('htmx:afterSwap', fetchBal);
 
     </script>
-    <div id="balance">
+    <div class="p-2" id="balance">
+        <a href="/"><button style="float: left; color: #1d232a; background-color: #ffffff" class="btn ?"><p style="display: inline;">TomBet</p></button></a>
         <button style="width: 10%; float: right; color: #1d232a; background-color: #ffffff" class="btn ?"><p style="display: inline;" id="bal"></p></button>
     </div>
     {% block content %}

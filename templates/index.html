@@ -6,38 +6,41 @@
     <script src="https://unpkg.com/htmx.org@latest"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script> 
     <link rel="stylesheet" href="public/output.css">
+    <link rel="stylesheet" href="public/main.css">
     <title>ASKAMA</title>
 </head>
 <body>
-    <div class="flex flex-col text-center justify-items-center w-full h-full align-center justify-centre">
-        <div class="m-auto text-2xl">
-            <h1>
-                Welcome to TomBet!
-            </h1><br>
-            <p>This is a portfolio showcase project written primarily in Rust,
-            with a focus on the backend, not the frontend!</p>
-        </div><br>
-        <div class="flex flex-col text-center justify-items-centre w-full h-full align-centre justify-centre">
-            <div class="flex m-auto flex-row text-center justify-items-center align-center p-3">
-                <a href="/lotto"><button class="bg-red-400 mx-2 p-3 rounded-full">Lotto</button></a>
-                <button class="bg-yellow-400 mx-2 p-3 rounded-full">Reality Shows</button>
-                <button class="bg-green-400 mx-2 p-3 rounded-full">Sports</button>
-                <button class="bg-blue-400 mx-2 p-3 rounded-full">Racing</button> 
-            </div>    
-        </div>
-        <div class="flex flex-row text-center justify-items-centre align-centre justify-centre">
-            <div class="flex align-middle m-auto flex-row text-center justify-items-center p-3">                
-                <a href="/login"><button 
-                    class="inline-flex align-middle text-center bg-black text-white mx-2 p-3 rounded-full">
-                    <p class="">Login</p>
-                </button></a>
-                <a href="/signup"><button
-                    class="inline-flex align-middle text-center bg-black text-white mx-2 p-3 rounded-full">
-                        <p class="">Sign Up</p>
-                </button></a>
+    <div style="height: 100%;" class="h-screen flex justify-center items-center">
+        <div style="width: 35%;" class="flex flex-col item-center text-center justify-centre">
+            <div style="color: white;" class="m-auto font-bold text-2xl">
+                <h1>
+                    Welcome to TomBet!
+                </h1><br>
+                <p>This is a portfolio showcase project written primarily in Rust,
+                with a focus on the backend, not the frontend!</p>
+            </div><br>
+            <div class="flex flex-col text-center justify-items-centre w-full h-full align-centre justify-centre">
+                <div style="color: black;" class="flex m-auto flex-row font-bold text-center justify-items-center align-center p-3">
+                    <a href="/lotto"><button class="text-black bg-red-400 mx-2 p-3 rounded-full">Lotto</button></a>
+                    <button class="text-black bg-yellow-400 mx-2 p-3 rounded-full">Reality Shows</button>
+                    <button class="text-black bg-green-400 mx-2 p-3 rounded-full">Sports</button>
+                    <button class="text-black bg-blue-400 mx-2 p-3 rounded-full">Racing</button> 
+                </div>    
+            </div>
+            <div class="flex flex-row text-center justify-items-centre align-centre justify-centre">
+                <div class="flex font-bold align-middle m-auto flex-row text-center justify-items-center p-3">                
+                    <a href="/login"><button 
+                            class="inline-flex align-middle text-center bg-black text-white mx-2 p-3 rounded-full">
+                            <p class="">Login</p>
+                        </button></a>
+                        <a href="/signup"><button
+                                class="inline-flex align-middle text-center bg-black text-white mx-2 p-3 rounded-full">
+                                <p class="">Sign Up</p>
+                            </button></a>
+                </div>
             </div>
         </div>
-
+    </div>
     
 </body>
 </html>

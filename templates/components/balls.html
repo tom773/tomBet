@@ -6,9 +6,11 @@
        if (msg != "") {
            msgdiv.innerHTML = msg;
            msgdiv.style.display = "flex";
-           msgdiv.style.color = "#044f00";
+           msgdiv.style.color = "#099e02";
        } else {
-           msgdiv.style.display = "none";
+           msgdiv.innerHTML = "-$2.00";
+           msgdiv.style.display = "flex";
+           msgdiv.style.color = "#ab2929";
        }
     </script>
     {% for ball in balls %}
