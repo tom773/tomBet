@@ -1,0 +1,11 @@
+#numred, #num{
+    border-radius: 0px;
+    border: none;
+    margin: 0px;
+    height: 80px;
+    width: 80px;
+}
+
+#numred{
+    background-color: #ad2a35;
+}

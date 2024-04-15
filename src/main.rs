@@ -28,15 +28,22 @@ use sqlx::postgres::PgPoolOptions;
 use sqlx::Connection;
 use sqlx::Row;
 mod utils;
+mod play;
 mod generator;
 use std::sync::Mutex;
 use tokio::sync::Mutex as TokioMutex;
 use byteorder::{ByteOrder, LittleEndian, WriteBytesExt};
+use dotenv::dotenv;
+
 
 #[tokio::main]
 async fn main() { 
     
-    let routes_hello = Router::new().merge(routes_hello()).merge(routes_lotto())
+    dotenv().ok();
+    let secret = std::env::var("SECRET").expect("SECRET must be set");
+    let routes_hello = Router::new().merge(routes_hello())
+        .merge(routes_lotto())
+        .merge(routes_roulette())
         .nest_service("/public", ServeDir::new("public"));
     let listener = TcpListener::bind("127.0.0.1:3000").await.unwrap();
 	println!("->> LISTENING on {:?}\n", listener.local_addr());
@@ -65,6 +72,12 @@ fn routes_lotto() -> Router {
         .route("/api/select-numbers", post(sel_num))
         //.route("/api/balupdate", post(bal_update))
         .route("/api/getbal", get(get_bal))
+
+}
+
+fn routes_roulette() -> Router {
+    Router::new()
+        .route("/roulette", get(play::roulette::hroul))
 }
 
 // Auth Handlers
@@ -85,6 +98,7 @@ async fn handler_login(Form(LoginUser): Form<LoginUser>) -> (impl IntoResponse){
     if error.is_err(){
         return(Html("<p style='color: red;'>Login Failed!</p>".to_string()))
     };
+    let token = utils::auth::get_token_for_user(&user.username, &utils::auth::Config::from_env());
     headers.insert("HX-Target", "/".parse().unwrap());
     return (Html("<p style='color: green;'> Login Successful!</p>".to_string()));
 }
@@ -181,9 +195,8 @@ async fn get_nums() -> Json<utils::db::FetchedNums>{
     let ticket_ = FetchedNums{
         nums: ticket,
     };
-    return Json(ticket_); 
+    return Json(ticket_);
 }
-
 
 
 async fn sel_num(mut multipart: Multipart){ 

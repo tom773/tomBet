@@ -1,0 +1,58 @@
+{% extends "header.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="public/roulette.css">
+<div style="height: 100%;" class="h-screen flex justify-center items-center">
+    <div class="flex flex-col justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">    
+        <div class="flex justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">
+            <h1>Roulette</h1>
+        </div>
+        <div class="flex flex-col text-xl" id="result">
+            <div class="flex flex-row">
+                <button id="numred" class="btn">3</button>
+                <button id="num" class="btn">6</button>
+                <button id="numred" class="btn">9</button>
+                <button id="numred" class="btn">12</button>
+                <button id="num" class="btn">15</button>
+                <button id="numred" class="btn">18</button>
+                <button id="numred" class="btn">21</button>
+                <button id="num" class="btn">24</button>
+                <button id="numred" class="btn">27</button>
+                <button id="numred" class="btn">30</button>
+                <button id="num" class="btn">33</button>
+                <button id="numred" class="btn">36</button>
+            </div>
+            <div class="flex flex-row">
+                <button id="num" class="btn">2</button>
+                <button id="numred" class="btn">5</button>
+                <button id="num" class="btn">8</button>
+                <button id="num" class="btn">11</button>
+                <button id="numred" class="btn">14</button>
+                <button id="num" class="btn">17</button>
+                <button id="num" class="btn">20</button>
+                <button id="numred" class="btn">23</button>
+                <button id="num" class="btn">26</button>
+                <button id="num" class="btn">29</button>
+                <button id="numred" class="btn">32</button>
+                <button id="num" class="btn">35</button>
+            </div>
+            <div class="flex flex-row">
+                <button id="numred" class="btn">1</button>
+                <button id="num" class="btn">4</button>
+                <button id="numred" class="btn">7</button>
+                <button id="num" class="btn">10</button>
+                <button id="num" class="btn">13</button>
+                <button id="numred" class="btn">16</button>
+                <button id="numred" class="btn">19</button>
+                <button id="num" class="btn">22</button>
+                <button id="numred" class="btn">25</button>
+                <button id="num" class="btn">28</button>
+                <button id="num" class="btn">31</button>
+                <button id="numred" class="btn">34</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

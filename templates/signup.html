@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/htmx.org@latest"></script>
-    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script> 
-    <link rel="stylesheet" href="public/output.css">
-    <title>ASKAMA</title>
-</head>
-<body>
-<div class="flex justify-center bg-blue-200 m-auto text-xl text-center items-center w-1/2 h-1/2">    
-    <div class="flex justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">
-        <form action="/signup" method="post">
-            <div class="mb-4">
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
-            <div class="mb-4">
-                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                <input type="number" id="age" name="age" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
-            <div class="mb-4">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+{% extends "header.html" %}
+
+{% block content %}
+<div style="height: 100%;" class="h-screen flex justify-center items-center">
+    <div class="flex justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">    
+        <div class="flex justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">
+            <form action="/signup" method="post">
+                <div class="mb-4">
+                    <label for="username" class="block text-m font-bold text-white">Username</label>
+                    <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                <div class="mb-4">
+                    <label for="age" class="block text-m font-bold text-white">Age</label>
+                    <input type="number" id="age" name="age" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-m font-bold text-white">Password</label>
+                    <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
     </div>
 </div>
-</body>
-</html>
+{% endblock content %}
+
