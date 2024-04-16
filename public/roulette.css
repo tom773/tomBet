@@ -1,4 +1,4 @@
-#numred, #num{
+#zeropad, #outside1, #outside2, #outside, #numred, #num{
     border-radius: 0px;
     border: none;
     margin: 0px;
@@ -6,6 +6,42 @@
     width: 80px;
 }
 
+#zeropad {
+    visibility: hidden;
+}
+
+#outside1 {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0px 10px 0px 0px;
+}
+
+#outside2 {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#outside {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0px 0px 10px 0px;
+}
+
 #numred{
     background-color: #ad2a35;
+}
+
+#zero {
+    border-radius: 0px;
+    border: none;
+    position: absolute;
+    height: 240px;
+    width: 80px;
+    background-color: #01431e;
+}
+
+#box{
+    border-radius: 0px;
+    border: none;
+    color: white;
+    height: 80px;
+    width: 80px;
+    background-color: rgba(255, 255, 255, 0.3);
 }

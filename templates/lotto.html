@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="m-auto font-bold text-xl text-center" id="msg"></div>
+            <div class="m-auto font-bold text-xl text-center" style="visibility: hidden;" id="msg">0.00</div>
             <div class="m-auto p-2 flex flex-col text-center bg-gray"
                 x-data="{numbers: []}"
                 x-init="numbers = await (await fetch('/api/getnums')).json()">

@@ -78,6 +78,7 @@ fn routes_lotto() -> Router {
 fn routes_roulette() -> Router {
     Router::new()
         .route("/roulette", get(play::roulette::hroul))
+        .route("/api/spin", get(play::roulette::spin))
 }
 
 // Auth Handlers
