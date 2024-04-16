@@ -24,6 +24,10 @@
         <div id="wheel" class="flex justify-center spinner" style="">
             <img src="../public/static/wheel.png" />
         </div>
+
+        <div id="last" class="flex flex-col justify-center m-auto text-xl text-center items-center">
+            <h1 class="text-white text-xl font-bold">Last 10</h1>
+        </div>
     </div><br>
     <div class="flex flex-col"> 
         <div class="flex flex-inline">
@@ -32,8 +36,9 @@
                     <div class="flex flex-row absolute h-full">
                         <button id="zero" class="btn absolute">0</button>
                     </div>
+                    <!-- Investigate changing these into rows of divs -->
                     <button id="zeropad" class="btn">0</button>
-                    <button id="numred" class="btn">3</button>
+                    <button id="numred" class="btn"><span class="">0</span>3</button>
                     <button id="num" class="btn">6</button>
                     <button id="numred" class="btn">9</button>
                     <button id="numred" class="btn">12</button>

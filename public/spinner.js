@@ -6,18 +6,22 @@ var options = [
     28, 12, 35, 3, 26
 ];
 
-function getw() {
+function writeNum(number,  numbox, last) {
+
+    numbox.innerHTML = number;
+    var lastlabel = document.createElement('h1');
+    lastlabel.innerHTML = number;
+    last.appendChild(lastlabel);
+}
+async function getw() {
     
     fetch('/api/spin') 
         .then(response => response.json())
         .then(data => {
             var number = data.num;
 
-            console.log(number);
-
             var numbox = document.getElementById('numbox');
-            numbox.innerHTML = number;
-
+            var last = document.getElementById('last'); 
             var wheel = document.getElementById('wheel');
 
             wheel.style.transition = 'none';
@@ -27,20 +31,18 @@ function getw() {
             var deg = (360 * 3) + (360-(singleRotation * (options.indexOf(number))));
             wheel.style.transition = "all 5s ease-out";
             wheel.style.transform = "rotate(" + deg + "deg)";
+            
+            setTimeout(function(){writeNum(number, numbox, last);}, 5500);
+            
         });
 }
 
 var singleRotation = 360/37;
-function spin () {
+
+window.addEventListener('DOMContentLoaded', function() {
     var spinner = document.getElementById("spinbut");
     spinner.addEventListener("click", function(e) {
         e.preventDefault();
-
         getw();
-        
     }, false);
-}
-
-window.addEventListener('DOMContentLoaded', function() {
-    spin();
 });
