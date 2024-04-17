@@ -45,4 +45,13 @@ window.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         getw();
     }, false);
+
+    var bet = document.getElementById("six")!;
+    var bnr = document.getElementById('bnr')!;
+    bnr.addEventListener('click', function(e) {
+        e.preventDefault();
+        bet.style.visibility = "visible";
+        bet.innerHTML = "100k";
+
+    }, false);
 });

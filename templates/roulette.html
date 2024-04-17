@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="public/roulette.css">
 <div style="height: 100%;" class="h-screen flex flex-col justify-center items-center">
-    <div class="flex justify-center items-center flex-row">
+    <div class="flex justify-between items-center flex-row">
         <div class="flex flex-col justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">
             <div class="flex justify-center m-auto text-xl text-center items-center w-1/2 h-1/2">
                 <h1>Roulette</h1><br>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div id="wheel" class="flex justify-center h-full w-1/2 spinner" style="">
+        <div id="wheel" class="flex justify-center spinner" style="">
             <img src="../public/static/wheel.png" />
         </div>
 
@@ -37,52 +37,138 @@
                         <button id="zero" class="btn absolute">0</button>
                     </div>
                     <!-- Investigate changing these into rows of divs -->
-                    <button id="zeropad" class="btn">0</button>
-                    <button id="numred" class="btn"><span class="">0</span>3</button>
-                    <button id="num" class="btn">6</button>
-                    <button id="numred" class="btn">9</button>
-                    <button id="numred" class="btn">12</button>
-                    <button id="num" class="btn">15</button>
-                    <button id="numred" class="btn">18</button>
-                    <button id="numred" class="btn">21</button>
-                    <button id="num" class="btn">24</button>
-                    <button id="numred" class="btn">27</button>
-                    <button id="numred" class="btn">30</button>
-                    <button id="num" class="btn">33</button>
-                    <button id="numred" class="btn">36</button>
-                    <button id="outside1" class="btn">2 to 1</button>
+                    <button id="zeropad" class="btn bbut">0</button>
+                    <div class="flex-col" id="numred">
+                        <p id="three" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">3</button>
+                    </div>
+                    <div id="num">
+                        <p id="six" style="visibility: hidden;" class="">0</p>
+                        <button id="bnr" class="btn bbut">6</button>
+                    </div>
+                    <div id="numred">
+                        <p id="nine" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">9</button>
+                    </div>
+                    <div id="numred">
+                        <p id="twelve" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">12</button>
+                    </div>
+                    <div id="num">
+                        <p id="fifteen" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">15</button>
+                    </div>
+                    <div id="numred">
+                        <p id="eighteen" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">18</button>
+                    </div>
+                    <div id="numred">
+                        <p id="twentyone" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">21</button>
+                    </div>
+                    <div id="num">
+                        <p id="twentyfour" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">24</button>
+                    </div>
+                    <div id="numred">
+                        <p id="twentyseven" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">27</button>
+                    </div>
+                    <div id="numred">
+                        <p id="thirty" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">30</button>
+                    </div>
+                    <div id="num">
+                        <p id="thirtythree" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">33</button>
+                    </div>
+                    <div id="numred">
+                        <p id="thirtysix" style="visibility: hidden;" class="align-left">0</p>
+                        <button id="bnr" class="btn bbut">36</button>
+                    </div>
+                    <button id="outside1" class="btn bbut">2 to 1</button>
                 </div>
                 <div class="flex flex-row">
-                    <button id="zeropad" class="btn">0</button>
-                    <button id="num" class="btn">2</button>
-                    <button id="numred" class="btn">5</button>
-                    <button id="num" class="btn">8</button>
-                    <button id="num" class="btn">11</button>
-                    <button id="numred" class="btn">14</button>
-                    <button id="num" class="btn">17</button>
-                    <button id="num" class="btn">20</button>
-                    <button id="numred" class="btn">23</button>
-                    <button id="num" class="btn">26</button>
-                    <button id="num" class="btn">29</button>
-                    <button id="numred" class="btn">32</button>
-                    <button id="num" class="btn">35</button>
-                    <button id="outside2" class="btn">2 to 1</button>
+                    <button id="zeropad" class="btn bbut">0</button>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">2</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">5</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">8</button>
+                    </div>
+
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">11</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">14</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">17</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">20</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">23</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">26</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">29</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">32</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">35</button>
+                    </div>
+                    <button id="outside2" class="btn bbut">2 to 1</button>
                 </div>
                 <div class="flex flex-row">
-                    <button id="zeropad" class="btn">0</button>
-                    <button id="numred" class="btn">1</button>
-                    <button id="num" class="btn">4</button>
-                    <button id="numred" class="btn">7</button>
-                    <button id="num" class="btn">10</button>
-                    <button id="num" class="btn">13</button>
-                    <button id="numred" class="btn">16</button>
-                    <button id="numred" class="btn">19</button>
-                    <button id="num" class="btn">22</button>
-                    <button id="numred" class="btn">25</button>
-                    <button id="num" class="btn">28</button>
-                    <button id="num" class="btn">31</button>
-                    <button id="numred" class="btn">34</button>
-                    <button id="outside" class="btn">2 to 1</button>
+                    <button id="zeropad" class="btn bbut">0</button>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">1</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">4</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">7</button>
+                    </div>
+
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">10</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">13</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">16</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">19</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">22</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">25</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">28</button>
+                    </div>
+                    <div id="num">
+                        <button id="bnr" class="btn bbut">31</button>
+                    </div>
+                    <div id="numred">
+                        <button id="bnr" class="btn bbut">34</button>
+                    </div>
+                    <button id="outside" class="btn bbut">2 to 1</button>
                 </div>
             </div>    
         </div>

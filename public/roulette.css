@@ -10,18 +10,31 @@
     visibility: hidden;
 }
 
+#bnr{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+    border: None;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 #outside1 {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0px 10px 0px 0px;
+    font-size: 1rem;
 }
 
 #outside2 {
     background-color: rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
 }
 
 #outside {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0px 0px 10px 0px;
+    font-size: 1rem;
 }
 
 #numred{
@@ -35,6 +48,7 @@
     height: 240px;
     width: 80px;
     background-color: #01431e;
+    font-size: 1.5rem;
 }
 
 #box{
@@ -58,4 +72,33 @@
     border-radius: 5px;
 }
 
+.spinner{
+    height: 50vh;
+    width: 50vw;
+}
+#one, #two, #three, #four, #five, #six, #seven, #eight,
+#nine, #ten, #eleven, #twelve, #thirteen, #fourteen, #fifteen,
+#sixteen, #seventeen, #eighteen, #nineteen, #twenty, #twentyone,
+#twentytwo, #twentythree, #twentyfour, #twentyfive, #twentysix,
+#twentyseven, #twentyeight, #twentynine, #thirty, #thirtyone,
+#thirtytwo, #thirtythree, #thirtyfour, #thirtyfive, #thirtysix {
+    font-weight: bold;
+    font-size: 0.8rem;
+    position: absolute;
+    text-align: center;
+    width: 40px;
+    border-radius: 9999px;
+    margin-top: 1px;
+    margin-left: 1px;
+    border: 1px solid white;
 
+}
+#num{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.bbut{
+   font-size: 2rem; 
+   font-weight: bold;
+
+}
