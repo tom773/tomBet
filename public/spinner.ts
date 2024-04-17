@@ -6,11 +6,11 @@ var options = [
     28, 12, 35, 3, 26
 ];
 
-function writeNum(number,  numbox, last) {
+    function writeNum(number: number,  numbox: HTMLElement, last: HTMLElement) {
 
-    numbox.innerHTML = number;
+    numbox.innerHTML = number.toString();
     var lastlabel = document.createElement('h1');
-    lastlabel.innerHTML = number;
+    lastlabel.innerHTML = number.toString();
     last.appendChild(lastlabel);
 }
 async function getw() {
@@ -20,9 +20,9 @@ async function getw() {
         .then(data => {
             var number = data.num;
 
-            var numbox = document.getElementById('numbox');
-            var last = document.getElementById('last'); 
-            var wheel = document.getElementById('wheel');
+            var numbox = document.getElementById('numbox')!;
+            var last = document.getElementById('last')!; 
+            var wheel = document.getElementById('wheel')!;
 
             wheel.style.transition = 'none';
             wheel.style.transform = 'none';
@@ -40,7 +40,7 @@ async function getw() {
 var singleRotation = 360/37;
 
 window.addEventListener('DOMContentLoaded', function() {
-    var spinner = document.getElementById("spinbut");
+    var spinner = document.getElementById("spinbut")!;
     spinner.addEventListener("click", function(e) {
         e.preventDefault();
         getw();
