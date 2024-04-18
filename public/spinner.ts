@@ -91,7 +91,6 @@ async function getw() {
                      }
                 }
             }
-            console.log(total);
             setTimeout(function(){writeNum(number, numbox, last);}, 5500);
             
         });
@@ -115,7 +114,6 @@ function clear(){
     console.log("Clearing");
     var bets = Array.from(document.querySelectorAll('.bet') as NodeListOf<HTMLElement>);
     for (var i = 0; i < bets.length; i++){
-        console.log("Test!");
         bets[i].innerHTML = '';
         bets[i].style.visibility = 'hidden';
     }
