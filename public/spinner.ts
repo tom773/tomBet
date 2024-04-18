@@ -6,18 +6,68 @@ var options = [
     28, 12, 35, 3, 26
 ];
 
-    function writeNum(number: number,  numbox: HTMLElement, last: HTMLElement) {
+let hashMap = new Map<string, number>();
+hashMap.set('zero', 0);
+hashMap.set('one', 1);
+hashMap.set('two', 2);
+hashMap.set('three', 3);
+hashMap.set('four', 4);
+hashMap.set('five', 5);
+hashMap.set('six', 6);
+hashMap.set('seven', 7);
+hashMap.set('eight', 8);
+hashMap.set('nine', 9);
+hashMap.set('ten', 10);
+hashMap.set('eleven', 11);
+hashMap.set('twelve', 12);
+hashMap.set('thirteen', 13);
+hashMap.set('fourteen', 14);
+hashMap.set('fifteen', 15);
+hashMap.set('sixteen', 16);
+hashMap.set('seventeen', 17);
+hashMap.set('eighteen', 18);
+hashMap.set('nineteen', 19);
+hashMap.set('twenty', 20);
+hashMap.set('twentyone', 21);
+hashMap.set('twentytwo', 22);
+hashMap.set('twentythree', 23);
+hashMap.set('twentyfour', 24);
+hashMap.set('twentyfive', 25);
+hashMap.set('twentysix', 26);
+hashMap.set('twentyseven', 27);
+hashMap.set('twentyeight', 28);
+hashMap.set('twentynine', 29);    
+hashMap.set('thirty', 30);
+hashMap.set('thirtyone', 31);
+hashMap.set('thirtytwo', 32);
+hashMap.set('thirtythree', 33);
+hashMap.set('thirtyfour', 34);
+hashMap.set('thirtyfive', 35);
+hashMap.set('thirtysix', 36);
+
+
+function writeNum(number: number,  numbox: HTMLElement, last: HTMLElement) {
 
     numbox.innerHTML = number.toString();
     var lastlabel = document.createElement('h1');
     lastlabel.innerHTML = number.toString();
     last.appendChild(lastlabel);
 }
+var betsMap = new Map<number, number>();
+async function declareWinner() {
+
+    var winDiv = document.getElementById('win')!;
+    winDiv.style.visibility = 'visible';
+
+}
 async function getw() {
     
     fetch('/api/spin') 
         .then(response => response.json())
         .then(data => {
+            var winDiv = document.getElementById('win')!;
+            winDiv.style.visibility = 'hidden';
+
             var number = data.num;
 
             var numbox = document.getElementById('numbox')!;
@@ -32,15 +82,32 @@ async function getw() {
             wheel.style.transition = "all 5s ease-out";
             wheel.style.transform = "rotate(" + deg + "deg)";
             
+            var total = 0;
+            if (betsMap != null) {
+                for (var [key, value] of betsMap) {
+                     total += value;
+                     if (key == number) {
+                        setTimeout(function(){declareWinner();}, 5500);
+                     }
+                }
+            }
+            console.log(total);
             setTimeout(function(){writeNum(number, numbox, last);}, 5500);
             
         });
 }
-
 function addBet(divNum: string){
-    console.log(divNum);
+    var betAmt = 100;
+    if (betsMap.has(hashMap.get(divNum))){
+        var existingBet =  document.getElementById(divNum).innerHTML!;
+        var newBetAmt = parseInt(existingBet) + 100;
+        betsMap.set(hashMap.get(divNum), newBetAmt);
+        document.getElementById(divNum).innerHTML = newBetAmt.toString();
+        return;
+    }
+    betsMap.set(hashMap.get(divNum), betAmt);
     var bet = document.getElementById(divNum)!;
-    bet.innerHTML = '100k';
+    bet.innerHTML = betAmt.toString();
     bet.style.visibility = 'visible';
 }
 
