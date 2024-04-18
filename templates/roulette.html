@@ -39,52 +39,52 @@
                     <!-- Investigate changing these into rows of divs -->
                     <button id="zeropad" class="btn bbut">0</button>
                     <div class="flex-col" id="numred">
-                        <p id="three" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">3</button>
+                        <p id="three" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('three');" class="btn bbut">3</button>
                     </div>
                     <div id="num">
-                        <p id="six" style="visibility: hidden;" class="">0</p>
-                        <button id="bnr" class="btn bbut">6</button>
+                        <p id="six" style="visibility: hidden;" class="bet" >0</p>
+                        <button id="bnr" onclick="addBet('six');" class="btn bbut">6</button>
                     </div>
                     <div id="numred">
-                        <p id="nine" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">9</button>
+                        <p id="nine" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr"onclick="addBet('nine');" class="btn bbut">9</button>
                     </div>
                     <div id="numred">
-                        <p id="twelve" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">12</button>
+                        <p id="twelve" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('twelve');" class="btn bbut">12</button>
                     </div>
                     <div id="num">
-                        <p id="fifteen" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">15</button>
+                        <p id="fifteen" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('fifteen');" class="btn bbut">15</button>
                     </div>
                     <div id="numred">
-                        <p id="eighteen" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">18</button>
+                        <p id="eighteen" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('eighteen');" class="btn bbut">18</button>
                     </div>
                     <div id="numred">
-                        <p id="twentyone" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">21</button>
+                        <p id="twentyone" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('twentyone');" class="btn bbut">21</button>
                     </div>
                     <div id="num">
-                        <p id="twentyfour" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">24</button>
+                        <p id="twentyfour" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('twentyfour');" class="btn bbut">24</button>
                     </div>
                     <div id="numred">
-                        <p id="twentyseven" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">27</button>
+                        <p id="twentyseven" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('twentyseven');" class="btn bbut">27</button>
                     </div>
                     <div id="numred">
-                        <p id="thirty" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">30</button>
+                        <p id="thirty" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('thirty');" class="btn bbut">30</button>
                     </div>
                     <div id="num">
-                        <p id="thirtythree" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">33</button>
+                        <p id="thirtythree" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('thirtythree');" class="btn bbut">33</button>
                     </div>
                     <div id="numred">
-                        <p id="thirtysix" style="visibility: hidden;" class="align-left">0</p>
-                        <button id="bnr" class="btn bbut">36</button>
+                        <p id="thirtysix" style="visibility: hidden;" class="bet align-left">0</p>
+                        <button id="bnr" onclick="addBet('thirtysix');" class="btn bbut">36</button>
                     </div>
                     <button id="outside1" class="btn bbut">2 to 1</button>
                 </div>
@@ -170,6 +170,7 @@
                     </div>
                     <button id="outside" class="btn bbut">2 to 1</button>
                 </div>
+                <button id="clear" class="btn">Clear Board</button>
             </div>    
         </div>
     </div>

@@ -37,6 +37,23 @@ async function getw() {
         });
 }
 
+function addBet(divNum: string){
+    console.log(divNum);
+    var bet = document.getElementById(divNum)!;
+    bet.innerHTML = '100k';
+    bet.style.visibility = 'visible';
+}
+
+function clear(){
+    console.log("Clearing");
+    var bets = Array.from(document.querySelectorAll('.bet') as NodeListOf<HTMLElement>);
+    for (var i = 0; i < bets.length; i++){
+        console.log("Test!");
+        bets[i].innerHTML = '';
+        bets[i].style.visibility = 'hidden';
+    }
+}
+
 var singleRotation = 360/37;
 
 window.addEventListener('DOMContentLoaded', function() {
@@ -45,13 +62,10 @@ window.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         getw();
     }, false);
-
-    var bet = document.getElementById("six")!;
-    var bnr = document.getElementById('bnr')!;
-    bnr.addEventListener('click', function(e) {
+    
+    var clearbtn = document.getElementById("clear")!;
+    clearbtn.addEventListener("click", function(e) {
         e.preventDefault();
-        bet.style.visibility = "visible";
-        bet.innerHTML = "100k";
-
+        clear();
     }, false);
 });
